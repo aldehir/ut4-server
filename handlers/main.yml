@@ -1,0 +1,6 @@
+---
+- name: restart ut4-server
+  systemd:
+    name: ut4-server.service
+    daemon_reload: yes
+    state: restarted

@@ -1,0 +1,11 @@
+[Unit]
+Description=UT4 Server
+After=network-online.target
+
+[Service]
+User={{ user }}
+WorkingDirectory={{ server_directory }}
+ExecStart={{ server_directory }}/{{ server_executable }} {{ startup_args | join(' ') }}
+
+[Install]
+WantedBy=multi-user.target

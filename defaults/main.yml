@@ -1,0 +1,16 @@
+---
+user: ut4-server
+user_directory: "/srv/{{ user }}"
+server_directory: "{{ user_directory }}/LinuxServer"
+server_executable: Engine/Binaries/Linux/UE4Server-Linux-Shipping
+config_directory: "{{ server_directory }}/UnrealTournament/Saved/Config/LinuxServer"
+
+startup_args:
+  - UnrealTournament
+  - UT-Entry?Game=Lobby
+  - -log
+
+download_url: https://s3.amazonaws.com/unrealtournament/ShippedBuilds/%2B%2BUT%2BRelease-Next-CL-3525360/UnrealTournament-Server-XAN-3525360-Linux.zip
+download_dest: "{{ user_directory }}/{{ download_url | basename }}"
+
+rcon_password: ""
