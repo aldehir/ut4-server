@@ -56,10 +56,46 @@
 - name: Set Rcon password in Engine.ini
   ini_file:
     path: "{{ config_directory }}/Engine.ini"
-    create: no
     section: /Script/UnrealTournament.UTGameEngine
+    no_extra_spaces: yes
     option: RconPassword
     value: "{{ rcon_password }}"
+  notify: restart ut4-server
+
+- name: Configure server name
+  ini_file:
+    path: "{{ config_directory }}/Game.ini"
+    section: /Script/UnrealTournament.UTGameState
+    no_extra_spaces: yes
+    option: ServerName
+    value: "{{ server_name }}"
+  notify: restart ut4-server
+
+- name: Configure server MOTD
+  ini_file:
+    path: "{{ config_directory }}/Game.ini"
+    section: /Script/UnrealTournament.UTGameState
+    no_extra_spaces: yes
+    option: ServerMOTD
+    value: "{{ server_motd }}"
+  notify: restart ut4-server
+
+- name: Configure server description
+  ini_file:
+    path: "{{ config_directory }}/Game.ini"
+    section: /Script/UnrealTournament.UTGameState
+    no_extra_spaces: yes
+    option: ServerDescription
+    value: "{{ server_description }}"
+  notify: restart ut4-server
+
+- name: Configure max instances
+  ini_file:
+    path: "{{ config_directory }}/Game.ini"
+    section: /Script/UnrealTournament.UTLobbyGameMode
+    no_extra_spaces: yes
+    option: MaxInstances
+    value: "{{ max_instances | string }}"
   notify: restart ut4-server
 
 - name: Enable and start up ut4-server service
