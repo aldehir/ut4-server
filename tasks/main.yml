@@ -104,3 +104,24 @@
     enabled: yes
     daemon_reload: yes
     state: started
+
+- name: Install ut4-server firewalld service configuration
+  template:
+    src: templates/ut4-server.xml
+    dest: /etc/firewalld/services/ut4-server.xml
+    mode: '0644'
+  register: firewalld_service_result
+
+- name: Reload firewalld to pick up service file
+  systemd:
+    name: firewalld.service
+    state: reloaded
+  when: firewalld_service_result.changed
+
+- name: Enable ut4-server firewalld service
+  firewalld:
+    zone: public
+    permanent: yes
+    immediate: yes
+    service: ut4-server
+    state: enabled

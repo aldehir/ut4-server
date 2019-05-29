@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>UT4 Server</short>
+  <description>UT4 Server Hub</description>
+  <port port="7777" protocol="udp"/>
+  <port port="7787" protocol="udp"/>
+  <port port="14000" protocol="udp"/>
+  <port port="8000-{{ 8000 + max_instances - 1 }}" protocol="udp"/>
+</service>
