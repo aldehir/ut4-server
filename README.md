@@ -14,7 +14,13 @@ Ansible role for setting up a UT4 server.
   roles:
     - name: ut4-server
       vars:
-        - rcon_password: "<set rcon password>"
+        server_name: UT4 Server
+        server_motd: <UT.Font.NormalText.Medium>Message of the day</>
+        server_description: Just your typical UT4 server
+
+        max_instances: 16
+
+        rcon_password: "<set rcon password>"
 ```
 
 ## Administration
