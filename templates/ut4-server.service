@@ -6,6 +6,7 @@ After=network-online.target
 User={{ user }}
 WorkingDirectory={{ server_directory }}
 ExecStart={{ server_directory }}/{{ server_executable }} {{ startup_args | join(' ') }}
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
