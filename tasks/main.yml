@@ -53,13 +53,13 @@
     mode: '0644'
   notify: restart ut4-server
 
-- name: Install Engine.ini
-  template:
-    src: templates/Engine.ini.j2
-    dest: "{{ config_directory }}/Engine.ini"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: '0644'
+- name: Set Rcon password in Engine.ini
+  ini_file:
+    path: "{{ config_directory }}/Engine.ini"
+    create: no
+    section: /Script/UnrealTournament.UTGameEngine
+    option: RconPassword
+    value: "{{ rcon_password }}"
   notify: restart ut4-server
 
 - name: Enable and start up ut4-server service
