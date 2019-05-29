@@ -57,6 +57,8 @@
   template:
     src: templates/Engine.ini.j2
     dest: "{{ config_directory }}/Engine.ini"
+    owner: "{{ user }}"
+    group: "{{ user }}"
     mode: '0644'
   notify: restart ut4-server
 
